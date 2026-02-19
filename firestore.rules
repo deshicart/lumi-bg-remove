@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Users collection
+    match /users/{userId} {
+      // Users can only read and write their own data
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Usage collection
+    match /usage/{usageId} {
+      // Users can only read their own usage data
+      allow read: if request.auth != null && 
+                     usageId.matches('^' + request.auth.uid + '_.*');
+      
+      // Only Firebase Functions can write to usage
+      // Users cannot directly modify usage data
+      allow write: if false;
+    }
+    
+    // History collection (optional)
+    match /history/{historyId} {
+      // Users can read their own history
+      allow read: if request.auth != null && 
+                     resource.data.userId == request.auth.uid;
+      
+      // Only Firebase Functions can write history
+      allow write: if false;
+    }
+  }
+}
