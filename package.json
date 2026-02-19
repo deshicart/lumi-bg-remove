@@ -1,0 +1,24 @@
+{
+  "name": "lumi-bg-remove",
+  "version": "1.0.0",
+  "description": "Background Remover Web Application for Bangladesh",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "deploy": "npm run build && firebase deploy"
+  },
+  "keywords": [
+    "background-remove",
+    "image-editing",
+    "firebase",
+    "react",
+    "bangladesh"
+  ],
+  "author": "Lumi Bg Remove Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deshicart/lumi-bg-remove.git"
+  }
+}
